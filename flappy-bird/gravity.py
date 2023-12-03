@@ -1,3 +1,5 @@
+import math 
+
 
 class Gravity:
     v0 : int = 0
@@ -6,6 +8,8 @@ class Gravity:
     dt : float = 0
     t : float = 0 
     dy : int 
+    et : int = 1
+    y0 : int
 
     shape : None 
 
@@ -14,12 +18,14 @@ class Gravity:
         self.g = g
         self.dt = dt 
         self.shape = shape
+        self.up()
 
     def add(self):
-        y = self.shape.y0 - self.v0 * self.t + (1/2) * self.g * self.t**2
-        self.dy = - self.v0 + self.g * self.t 
-        self.shape.move_y(y, 1) 
+        y = self.y0 - self.v0 * math.sin(math.pi/4) * self.t + (1/2) * self.g * self.t**2
+        self.shape.move_y(y, 1)
         self.t += self.dt 
 
     def up(self):
-        self.dt *= -1 
+        self.y0 = self.shape.y
+        self.x0 = self.shape.x
+        self.t = 0

@@ -7,3 +7,6 @@ class Config:
 
     BIRD_COLOR : tuple[int] = (255, 255, 255)
     BIRD_RADIUS : int = 20
+
+    PIPE_COLOR : tuple[int] = (255, 0, 0)
+    PIP_WIDTH : int = 50

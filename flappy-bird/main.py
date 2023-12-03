@@ -1,6 +1,7 @@
 import pygame as pg 
 from config import Config
 from bird import Bird
+from pipe import Pipe, GroupeOfPipes
 
 
 class FlappyBirdGame:
@@ -11,8 +12,11 @@ class FlappyBirdGame:
         
         self.bird = Bird(self.screen, pos=(200, 200))
 
+        self.grp_pipes = GroupeOfPipes(self.screen, 3)
+        #self.pipe.set_height(0.2)
+
         # set gravity to bird :
-        self.bird.set_gravity(v0=1, g=0.1)
+        self.bird.set_gravity(v0=5, g=0.1)
 
     def clean_screen(self):
         self.screen.fill(Config.BG_COLOR)
@@ -46,6 +50,14 @@ class FlappyBirdGame:
             
             # add gravity to bird : 
             self.bird.gravity.add()
+
+            # draw pipe : 
+            self.grp_pipes.draw()
+
+            # move :
+            self.grp_pipes.move_x(0.1, -1)
+
+            #print(self.pipe.success(self.bird))
 
             # make updates : 
             self.update()
